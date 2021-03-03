@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Cloudsys_AdvanceContact::contact" title="Contact Us" module="Cloudsys_AdvanceContact" sortOrder="51" resource="Cloudsys_AdvanceContact::contact" dependsOnConfig="contactus/general/active"/>
+        <add id="Cloudsys_AdvanceContact::contactdata" title="Contact Us Data" module="Cloudsys_AdvanceContact" sortOrder="10" action="contact/index/index" resource="Cloudsys_AdvanceContact::contactdata" parent="Cloudsys_AdvanceContact::contact" />
+        <add id="Cloudsys_AdvanceContact::config" title="Configuration" module="Cloudsys_AdvanceContact" sortOrder="10" action="adminhtml/system_config/edit/section/contactus" resource="Cloudsys_AdvanceContact::config" parent="Cloudsys_AdvanceContact::contact" />
+    </menu>
+</config>

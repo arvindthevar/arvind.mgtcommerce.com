@@ -1,0 +1,23 @@
+& when (@media-common = true) {
+	body{	
+		.fieldset > .field:not(.choice) > .control,
+		.fieldset > .field:not(.choice) > .label{
+			float: none;
+		}
+		.fieldset > .field > .label,
+		.fieldset > .fields > .field > .label{
+			font-weight: normal;
+		}
+	}
+	button,
+	.action.primary{
+		text-transform: uppercase;
+	}
+	.page-title-wrapper{
+		text-align: center;
+		margin-top: 30px;
+		font-family: @tr20;
+		text-transform: uppercase;
+		color: @color_h;
+	}
+}

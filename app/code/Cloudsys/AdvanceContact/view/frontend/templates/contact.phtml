@@ -1,0 +1,85 @@
+<?php 
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+?>
+<div class="container">
+    <div class="contact-block">
+        <!--  Map -->
+        <div class="contact-left-block">
+           <?php
+            echo $this->getLayout()
+            ->createBlock('Magento\Cms\Block\Block')
+            ->setBlockId('contact_address')
+            ->toHtml();
+            ?>
+        </div>
+        <!-- End map -->
+
+        <!--  Form --> 
+        <div class="contact-right-block">
+            <h2>Send Us a Message</h2>
+            <div class="required-line">All Fields Required</div>
+            <form class="form contact"
+              action="<?php /* @escapeNotVerified */ echo $block->getFormAction(); ?>"
+              id="contact-form"
+              method="post"
+              data-hasrequired="<?php /* @escapeNotVerified */ echo __('* All Fields Required ') ?>"
+              data-mage-init='{"validation":{}}'>
+                <fieldset class="fieldset">
+                    <div class="field name">
+                        <div class="control">
+                            <input name="firstname" id="firstname" placeholder="<?php /* @escapeNotVerified */ echo __('First Name') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field lastname">
+                        <div class="control">
+                            <input name="lastname" id="lastname" placeholder="<?php /* @escapeNotVerified */ echo __('Last Name') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field title">
+                        <div class="control">
+                            <input name="title" id="title" placeholder="<?php /* @escapeNotVerified */ echo __('Title') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field company">
+                        <div class="control">
+                            <input name="company_name" id="company_name" placeholder="<?php /* @escapeNotVerified */ echo __('Company') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field company">
+                        <div class="control">
+                            <input name="industry_served" id="industry_served" placeholder="<?php /* @escapeNotVerified */ echo __('Industry Served') ?>" class="input-text" type="text" data-validate="{required:true}"/>
+                        </div>
+                    </div>
+                    <div class="field email">
+                        <div class="control">
+                            <input name="email" id="email" placeholder="<?php /* @escapeNotVerified */ echo __('Email Address') ?>" class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                        </div>
+                    </div>
+                    <div class="field telephone">
+                        <div class="control">
+                            <input name="phone_no" id="phone_no" placeholder="<?php /* @escapeNotVerified */ echo __('Phone Number') ?>" value="" class="input-text" type="text" data-validate="{required:true, 'validate-number':true}" />
+                        </div>
+                    </div>
+                    <div class="field message">
+                        <div class="control">
+                            <textarea name="message" id="message" placeholder="<?php /* @escapeNotVerified */ echo __('Message') ?>" class="input-text" cols="5" rows="3" data-validate="{required:true}"></textarea>
+                        </div>
+                    </div>
+                    <!-- <?php echo $block->getChildHtml('form.additional.info'); ?> -->
+                </fieldset>
+                <div class="actions-toolbar">
+                    <div class="primary">
+                        <input type="hidden" name="hideit" id="hideit" value="" />
+                        <button type="submit" title="<?php /* @escapeNotVerified */ echo __('Submit') ?>" class="action submit primary">
+                            <span><?php /* @escapeNotVerified */ echo __('Submit') ?></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

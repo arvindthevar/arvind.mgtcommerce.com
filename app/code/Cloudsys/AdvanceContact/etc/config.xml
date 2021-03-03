@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Contact
+ * 
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<contactus>
+			<general>
+				<active>1</active>
+				<admin_name></admin_name>
+				<admin_email></admin_email>
+				<send_to_customer>1</send_to_customer>
+				<email_template_customer>contactus_general_email_template_customer</email_template_customer>
+				<send_to_admin>1</send_to_admin>
+				<email_template_admin>contactus_general_email_template_admin</email_template_admin>
+			</general>
+		</contactus>
+	</default>
+</config>
+

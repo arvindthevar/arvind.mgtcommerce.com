@@ -1,0 +1,7 @@
+<div class="homepage-video-container">
+	<video id="vid" poster="<?php echo $block->getFullMediaUrl($block->getHelper()->getVideoBannerUrl()); ?>" autoplay="autoplay" loop="loop" muted="" width="100%" height="auto">
+		<source src="<?php echo $block->getFullMediaUrl($block->getHelper()->getVideoUrl()); ?>" type="video/mp4">
+	</video>
+	<img class="mobile-banner" src="<?php echo $block->getFullMediaUrl($block->getHelper()->getMobileVideoBannerUrl()); ?>" alt="Goodyear Belts Home Page Video">
+	<div class="banner-text"><?php echo $block->getHelper()->getVideoTitle(); ?></div>
+</div>

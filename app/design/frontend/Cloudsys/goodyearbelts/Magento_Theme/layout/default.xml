@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="header.container">
+            <container name="header-wrapper" label="Page Header" as="header-wrapper" htmlTag="div" htmlClass="header content">
+                <block class="Magento\Theme\Block\Html\Header\Logo" name="logo" before="-">
+                    <arguments>
+                        <argument name="logo_img_width" xsi:type="number">189</argument>
+                        <argument name="logo_img_height" xsi:type="number">64</argument>
+                    </arguments>
+                </block>
+                <container name="mobile.login" label="login" as="mobile-login" htmlTag="ul" htmlClass="mobile-login" after='logo'>
+                    <block class="Magento\Customer\Block\Account\AuthorizationLink" name="mobile.auth" template="Magento_Customer::account/link/authorization.phtml" />
+                </container>
+                <container name="menu-wrapper" label="nav" as="header-nav" htmlTag="div" htmlClass="menu-bar">
+                    <block class="Magento\Theme\Block\Html\Topmenu" name="catalog.topnav" template="Magento_Theme::html/topmenu.phtml" />
+                    <container name="right-header" htmlTag="div" htmlClass="right-header" after="-">
+                        <block class="Magento\Cms\Block\Block" name="partner_logo" before="-">
+                            <arguments>
+                                <argument name="block_id" xsi:type="string">partner_logo</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Customer\Block\Account\Navigation" name="top.links">
+                            <arguments>
+                                <argument name="css_class" xsi:type="string">header links</argument>
+                            </arguments>
+                        </block>
+                        <block class="Magento\Store\Block\Switcher" name="store_language" as="store_language" template="Magento_Store::switch/languages.phtml">
+                            <arguments>
+                                <argument name="view_model" xsi:type="object">Magento\Store\ViewModel\SwitcherUrlProvider</argument>
+                            </arguments>
+                        </block>
+                    </container>
+                    <!--  <container name="center-header" htmlTag="div" htmlClass="center-header" before="right-header">
+                <block class="Magento\Cms\Block\Block" name="partfinder_logo" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">partfinder_logo</argument>
+                    </arguments>
+                </block>
+            </container> -->
+                </container>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="footer">
+            <container name="left.footer" as="left.footer" label="Left Footer" htmlTag="div" htmlClass="left-footer-section">
+                <block class="Magento\Cms\Block\Block" name="footer_social" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_social</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="custom_copyright" after="footer_social">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">custom_copyright</argument>
+                    </arguments>
+                </block>
+            </container>
+            <container name="right.footer" as="right.footer" label="Right Footer" htmlTag="div" htmlClass="right-footer-section" after="-">       
+                <block class="Magento\Cms\Block\Block" name="footer_links">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">footer_links</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceBlock name="header" remove="true" />
+        <referenceBlock name="skip_to_content" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="catalog.compare.link" remove="true" />        
+        <referenceBlock name="store_switcher" remove="true" />
+        <referenceBlock name="absolute_footer" remove="true" />
+        <referenceBlock name="navigation.sections" remove="true" />
+        <referenceBlock name="header.panel.wrapper" remove="true" />
+        <referenceBlock name="copyright" remove="true" />
+        <referenceBlock name="report.bugs" remove="true" />
+    </body>
+</page>

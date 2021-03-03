@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <homepage>
+            <general>
+                <video_url>file.mp4</video_url>
+                <video_title>Power Transmission &lt;br&gt; That Powers Your Business</video_title>
+                <video_banner>goodyearbelts/poster.jpg</video_banner>
+                <mobile_video_banner>goodyearbelts/mobile_banner.jpg</mobile_video_banner>
+            </general>
+        </homepage>
+    </default>
+</config>

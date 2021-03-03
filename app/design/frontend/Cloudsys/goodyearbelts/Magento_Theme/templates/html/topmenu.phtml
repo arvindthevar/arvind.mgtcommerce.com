@@ -1,0 +1,141 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Top menu for store
+ *
+ * @var $block \Magento\Theme\Block\Html\Topmenu
+ */
+
+$columnsLimit = $block->getColumnsLimit() ?: 0;
+$_menuHtml = $block->getHtml('level-top', 'submenu', $columnsLimit)
+?>
+
+<nav class="navigation" data-action="navigation">
+    <ul data-mage-init='{"menu":{"responsive":true, "expanded":true, "position":{"my":"left top","at":"left bottom"}}}'>
+        <li class="level0 nav-1 first level-top ui-menu-item"><a href="<?= $block->getUrl() ?>" title="<?= __("Home") ?>" class="level-top"><?= __("Home") ?></a></li>
+        <?= /* @noEscape */ $_menuHtml?>
+        <?= $block->getChildHtml() ?>
+
+        <!-- <li class="level0 nav-2 level-top ui-menu-item"><a href="<?= $block->getUrl('downloads') ?>" title="<?= __("Downloads") ?>" class="level-top"><?= __("Downloads") ?></a></li>
+
+        <li class="level0 nav-3 level-top ui-menu-item"><a href="<?= $block->getUrl('warranty-policy') ?>" title="<?= __("Warranty/Policies") ?>" class="level-top"><?= __("Warranty/Policies") ?></a></li> -->
+        
+        <li class="level0 nav-4 level-top ui-menu-item parent"><a href="<?= $block->getUrl('about-us') ?>" title="<?= __("Company") ?>" class="level-top">
+          <span class="ui-menu-icon ui-icon ui-icon-carat-1-e"></span>
+          <span><?= __("Company") ?></span>
+        </a>
+        <ul class="level0 submenu ui-menu ui-widget ui-widget-content ui-corner-all" role="menu" aria-expanded="false" style="display: none; top: 20.1406px; left: -0.390625px;" aria-hidden="true">
+          <li class="level1 nav-1-1 category-item first ui-menu-item" role="presentation">
+            <a href="<?= $block->getUrl('about-us') ?>" class="md-opjjpmhoiojifppkkcdabiobhakljdgm_doc ui-corner-all" id="ui-id-3" tabindex="-1" role="menuitem"><span><?php echo __("About us"); ?></span>
+            </a>
+          </li>
+          <li class="level1 nav-1-2 category-item ui-menu-item" role="presentation">
+            <a href="<?= $block->getUrl('news') ?>" title="<?= __("News") ?>" class="md-opjjpmhoiojifppkkcdabiobhakljdgm_doc ui-corner-all" tabindex="-1" role="menuitem"><span><?php echo __("News"); ?></span></a>
+          </li>
+          <li class="level1 nav-1-3 category-item ui-menu-item" role="presentation">
+            <a href="<?= $block->getUrl('careers') ?>" class="md-opjjpmhoiojifppkkcdabiobhakljdgm_doc ui-corner-all" id="ui-id-5" tabindex="-1" role="menuitem"><span><?php echo __("Careers"); ?></span>
+            </a>
+          </li>
+          <li class="level1 nav-1-4 category-item last ui-menu-item" role="presentation"><a href="<?= $block->getUrl('contact-us') ?>" class="md-opjjpmhoiojifppkkcdabiobhakljdgm_doc ui-corner-all" id="ui-id-6" tabindex="-1" role="menuitem"><span><?php echo __("Contact"); ?></span></a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+</nav>
+<div class="drive-nav">
+    <?php 
+    echo $this->getLayout()
+    ->createBlock('Magento\Cms\Block\Block')
+    ->setBlockId('drive_design')
+    ->toHtml();
+    ?>
+</div>
+<div class="partfinder-nav">
+  <?php
+    echo $this->getLayout()
+    ->createBlock('Magento\Cms\Block\Block')
+    ->setBlockId('partfinder_logo')
+    ->toHtml();
+    ?>
+</div>
+<style>
+  @media (min-width: 1024px){
+    .page-header .drive-nav,
+    .page-header .partfinder-nav{
+      display: none;
+    }
+  }
+  @media(max-width: 1023px){
+    .page-header .drive-nav img,
+    .page-header .partfinder-nav img{
+      display: block;
+    }
+    .drive-nav .drive_design{
+      padding-top: 16px;
+      padding-bottom: 16px;
+      padding-left: 15px;
+    }
+    .partfinder-nav .partlog{
+      padding-top: 5px;
+      padding-bottom: 5px;
+      padding-left: 15px;
+      border-top: 1px solid #3c5cad;
+    }
+  }
+</style>
+
+
+<script>
+    require(['jquery', 'jquery/ui'], function($){
+      jQuery(document).ready( function() {
+        if(jQuery(window).width() <  768){
+            jQuery(".menu-bar").hide();
+        }
+        jQuery(".nav-toggle").click(function(){
+          jQuery(".menu-bar").slideToggle();
+        });
+
+        var currentUrl = window.location.href;
+        $(".level0 a[href='"+window.location+"/']").parent().addClass("active");
+        $('nav.navigation ul li a').each(function(idx,ele){
+            if($(ele).attr('href') == currentUrl)
+            {
+                if(!$(ele).parent().hasClass('active'))
+                {
+                    $(ele).parent().addClass('active');
+                }
+            }
+
+            if ($(ele).parent().hasClass('active')) {
+                
+              var currentli=$(ele).parent();
+              if(currentli.hasClass('level1'))
+              {
+                currentli.parent().parent().addClass('active');
+              } 
+            }
+        });
+
+        //$(".level0 a[href='"+window.location+"/']").parent().addClass("active");
+
+      });
+      
+      $(window).scroll(function(){
+        var scroll = $(window).scrollTop(),
+            HeaderHeight = $('.page-header').height();
+        if (scroll >= 1){
+          $('.page-header').addClass('sticky');
+          $('.page-wrapper').css('padding-top', HeaderHeight);
+        }
+        else{
+          $('.page-header').removeClass('sticky');
+          $('.page-wrapper').css('padding-top', '0');
+        }
+      });
+          
+    });
+</script>

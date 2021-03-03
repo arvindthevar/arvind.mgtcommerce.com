@@ -1,0 +1,123 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+?>
+
+<?php
+/** @var $block \Magento\ConfigurableProduct\Block\Product\View\Type\Configurable*/
+$_product    = $block->getProduct();
+$_attributes = $block->decorateArray($block->getAllowAttributes());
+$count = 1;
+?>
+<?php if ($_product->isSaleable() && count($_attributes)):?>
+    <?php foreach ($_attributes as $_attribute): ?>
+        <div class="field configurable required">
+            <label class="label" for="attribute<?= /* @escapeNotVerified */ $_attribute->getAttributeId() ?>">
+                <span><?= $block->escapeHtml($_attribute->getProductAttribute()->getStoreLabel()) ?></span>
+            </label>
+            <div class="control">
+                <select name="super_attribute[<?= /* @escapeNotVerified */ $_attribute->getAttributeId() ?>]"
+                        data-selector="super_attribute[<?= /* @escapeNotVerified */ $_attribute->getAttributeId() ?>]"
+                        data-validate="{required:true}"
+                        id="attribute<?= /* @escapeNotVerified */ $_attribute->getAttributeId() ?>"
+                        count="count<?= /* @escapeNotVerified */ $count  ?>"
+                        class="super-attribute-select">
+                </select>
+            </div>
+        </div>
+
+<script type="text/javascript">
+            require(['jquery'], function ($) {
+                $(document).ready(function () {
+                    var super_attribute_select_id = '<?php echo $_attribute->getAttributeId() ?>';
+                    var url = window.location.pathname.split('/'); 
+                    var i = 0;
+                    var lasturltext;
+                    var selected;
+                    //console.log(url[url.length-2]);
+                    if(url[url.length-2] == 'industrial' || url[url.length-3] == 'industrial')
+                    {
+                        lasturltext = url[url.length-1];
+                    }
+                    else{
+                        lasturltext = '';
+                    }
+                    setDefaultConfigurableOptions();
+                    
+
+                    function setDefaultConfigurableOptions() {
+
+                        if($('#attribute'+super_attribute_select_id+' option').length > 1)
+                        {
+                            //console.log('hi');
+                            var first_option = $('#attribute'+super_attribute_select_id+' option:eq(0)').val();
+                            $('#attribute'+super_attribute_select_id).val(first_option);
+                            $('#attribute'+super_attribute_select_id).change();                           
+                        }
+                        else
+                        {
+                            setTimeout(setDefaultConfigurableOptions, 100);
+                        }
+                        if (lasturltext.length > 0) {
+                           // console.log('hi');
+                            $('#attribute'+super_attribute_select_id+' option').each(function() {
+                                var setUnderscore = $(this).html().toLowerCase().replace(' ','_').split(' ')[0].split('(')[0];
+                                if(setUnderscore == lasturltext)
+                                {
+                                    selected = i;
+                                }
+                                if(lasturltext == "narrow_wrapped_with_aramid_cord")
+                                {
+                                    selected = 4;
+                                }
+                                i++;
+                            });
+                            var first_option = $('#attribute'+super_attribute_select_id+'[count=count1]  option:eq('+selected+')').val();
+                            $('#attribute'+super_attribute_select_id+'[count=count1]').val(first_option);
+                            $('#attribute'+super_attribute_select_id+'[count=count1]').change();
+
+                            if(url[url.length-2] == 'banded' && lasturltext != "narrow_wrapped_with_aramid_cord")
+                            {
+                                var second_option2 = $('#attribute'+super_attribute_select_id+'[count=count2]  option:eq(1)').val();
+                                $('#attribute'+super_attribute_select_id+'[count=count2]').val(second_option2);
+                                $('#attribute'+super_attribute_select_id+'[count=count2]').change();
+
+                            }
+                            else
+                            {
+
+                                var second_option1 = $('#attribute'+super_attribute_select_id+'[count=count2]  option:eq(0)').val();
+                                $('#attribute'+super_attribute_select_id+'[count=count2]').val(second_option1);
+                                $('#attribute'+super_attribute_select_id+'[count=count2]').change();
+                            }
+                        }
+
+                        
+                    }
+
+                });
+            });
+        </script>
+
+
+    <?php $count++; endforeach; ?>
+    <script type="text/x-magento-init">
+        {
+            "#product_addtocart_form": {
+                "configurable": {
+                    "spConfig": <?= /* @escapeNotVerified */ $block->getJsonConfig() ?>,
+                    "gallerySwitchStrategy": "<?php /* @escapeNotVerified */ echo $block->getVar('gallery_switch_strategy',
+                        'Magento_ConfigurableProduct') ?: 'replace'; ?>"
+                }
+            },
+            "*" : {
+                "Magento_ConfigurableProduct/js/catalog-add-to-cart": {}
+            }
+        }
+    </script>
+<?php endif;?>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+    	<referenceBlock name="top.links">
+		    <block class="Cloudsys\GoodyearTheme\Block\Account\AuthorizationLink" name="my-account-link" template="Cloudsys_GoodyearTheme::myaccount.phtml" >
+		        <arguments>
+		            <argument name="label" xsi:type="string" translate="true">My Account</argument>
+		        </arguments>
+		    </block>
+		</referenceBlock>
+		<referenceContainer name="main.content">
+		    <block class="Magento\Framework\View\Element\Template" name="custom-block-name" template="Cloudsys_GoodyearTheme::popup.phtml"/>
+		</referenceContainer>
+		<referenceContainer name="menu-wrapper">
+            <container name="center-header" htmlTag="div" htmlClass="center-header" after="right-header">
+                <block class="Magento\Cms\Block\Block" name="partfinder_logo" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">partfinder_logo</argument>
+                    </arguments>
+                </block>
+                <block class="Magento\Cms\Block\Block" name="drive_design" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">drive_design</argument>
+                    </arguments>
+                </block>
+            </container>
+        </referenceContainer>
+    </body>
+</page>

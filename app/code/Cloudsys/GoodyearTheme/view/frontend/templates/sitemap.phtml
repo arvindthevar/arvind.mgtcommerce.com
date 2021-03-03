@@ -1,0 +1,113 @@
+<?php
+
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/** @var \Cloudsys\GoodyearTheme\Block\Sitemap $block */
+$sitemap = $this->getSitemapItems();
+
+
+?>
+<div class="sitemap-wrapper">
+	<ul class="sitemap-items">
+	<!-- Static link -->
+		<li class="sitemap-item">
+			<a href="<?php echo $block->getBaseUrl() ?>"><?php echo __("Home") ?> </a>
+		</li>
+		<!-- Category link -->
+		<?php
+		foreach ($sitemap as $category) {
+			echo "<li class='sitemap-item'>";
+			  echo '<a href='.$category['url'].'>'.$category['name'].'</a>';
+				if (isset($category["items"])) {
+					echo "<div class='opener'></div>";
+					echo "<ul>";
+						echo "<li><a href='".$block->getBaseUrl()."products/industrial'>Industrial Belts</a>";
+						echo "<ul style='display: block;'>";
+							echo "<li>Classic Series";
+								echo "<ul style='display: block;'>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/banded/classic_cogged'>Banded Cogged V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/banded/classic_wrapped'>Banded Wrapped V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/classic_cogged'>Cogged V-belts V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/classic_wrapped'>Wrapped V-belts</a></li>";
+								echo "</ul>";
+							echo "</li>";
+							echo "<li>Narrow/Wedge Series";
+								echo "<ul style='display: block;'>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/banded/narrow_cogged'>Banded Cogged V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/banded/narrow_wrapped'>Banded Wrapped V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/banded/narrow_wrapped_with_aramid_cord'>Banded Wrapped V-belts with Aramid Cord</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/narrow_cogged'>Cogged V-belts</a></li>";
+									echo "<li> <a href='".$block->getBaseUrl()."products/industrial/narrow_wrapped'>Wrapped V-belts</a></li>";
+								echo "</ul>";
+							echo "</li>";
+						echo "</ul>";
+						echo "</li>";
+					foreach ($category["items"] as $child) {
+						echo '<li> <a href='.$child['url'].'>'.$child['name'].'</a></li>';
+					}
+
+					echo "</ul>";
+				}
+			echo "</li>";
+		}
+		?>
+		<li class="sitemap-item">
+			<a href="<?php echo $block->getBaseUrl()."about-us" ?>"><?php echo __("Comapny") ?></a>
+			<div class='opener'></div>
+			<ul>
+				<li>
+					<a href="<?php echo $block->getBaseUrl()."about-us" ?>"><?php echo __("About Us") ?></a>
+				</li>
+				<li>
+					<a href="<?php echo $block->getBaseUrl()."news" ?>"><?php echo __("News") ?></a>
+				</li>
+				<li>
+					<a href="<?php echo $block->getBaseUrl()."careers" ?>"><?php echo __("Careers") ?></a>
+				</li>
+				<li>
+					<a href="<?php echo $block->getBaseUrl()."contact-us" ?>"><?php echo __("Contact") ?></a>
+				</li>
+			</ul>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Drive Design") ?> </a>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Parts Finder") ?> </a>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Privacy Policy") ?> </a>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Terms and Conditions") ?> </a>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Use of Cookies") ?> </a>
+		</li>
+		<li class="sitemap-item">
+			<a href=""><?php echo __("Accessibility") ?> </a>
+		</li>
+	</ul>
+</div>
+<?php
+
+?>
+
+<script>
+	require(['jquery', 'jquery/ui'], function($){ 
+	     $(document).ready(function(){
+		  jQuery('.sitemap-item').each(function(){
+		  	if(jQuery(this).find('ul').length > 0){
+		  		jQuery(this).addClass('submenu');
+		  	}
+		  });
+		  $(".opener").click(function(){
+			  $(this).next('ul').slideToggle();
+			  $(this).toggleClass('active');
+			});
+		});
+	 });
+</script>

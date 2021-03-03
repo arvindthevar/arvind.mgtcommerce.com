@@ -1,0 +1,45 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+<div id="goodyear_popup" style="display:none;">
+	<div class="model-container">
+		<?php echo $this->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId('cookie_popup')->toHtml(); ?>
+		<div class="model-button">
+            <a id="popup-learn" href="<?php echo $block->getBaseUrl()."enable-cookies"; ?>"><?php /* @noEscape */ echo __('Learn More.') ?></a>
+            <button id="popup_accept"><?php /* @noEscape */ echo __('Accept') ?></button>
+        </div>
+	</div>
+</div>
+<script>
+   require(
+       [
+           'jquery',
+           'Magento_Ui/js/modal/modal',
+           'domReady!'
+       ],
+       function ($,modal) {
+           var options = {
+               type: 'popup',
+               responsive: false,
+               clickableOverlay:false,
+               modalClass:'cookie-popup',
+               innerScroll: false,
+               buttons: false
+              // title: 'Newsletter'
+           };
+           var callforoption = modal(options, $('#goodyear_popup'));
+           //$('#goodyear_popup').modal('openModal');
+           
+           $("body").on("click", "#popup_accept", function(e) {
+                    $("#goodyear_popup").modal('closeModal');
+               });
+           if (!localStorage.getItem('popupShown')) {
+                $('#goodyear_popup').modal('openModal');
+                localStorage.setItem('popupShown', true);
+            }
+       }
+   );
+</script>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+        <title>Goodyear Belts: Contact Us</title>
+        <meta name="description" content="Goodyear Belts is here to help. Email us at info@goodyearbelts.com"/>
+    </head>
+    <body>
+	    <referenceContainer name="content">
+	    	<container name="contact-head-section" htmlTag="div" htmlClass="contact-image-section">
+                <block class="Magento\Cms\Block\Block" name="contact-banner-block" before="-">
+                    <arguments>
+                        <argument name="block_id" xsi:type="string">contact-banner-block</argument>
+                    </arguments>
+                </block>
+            </container>
+	        <block class="Cloudsys\AdvanceContact\Block\Index" name="AdvanceContact_index_index" template="Cloudsys_AdvanceContact::contact.phtml" ifconfig="contactus/general/active"/>
+	    </referenceContainer>
+        <referenceBlock name="page.main.title" remove="true"/>
+	</body>
+    
+</page>

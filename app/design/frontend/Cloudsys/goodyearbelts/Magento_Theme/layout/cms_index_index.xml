@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Cloudsys\GoodyearTheme\Block\Video" name="homepage_video_banner" as="homepage_video_banner" template="Cloudsys_GoodyearTheme::home-video.phtml">
+                <!-- <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_video_banner</argument>
+                </arguments> -->
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Magento\Cms\Block\Block" name="homepage_block1">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_block1</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="homepage_block2">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_block2</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="homepage_block3">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_block3</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="homepage_block4">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_block4</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
